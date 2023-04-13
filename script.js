@@ -3,13 +3,19 @@ console.log(
   "color: red; font-size: larger"
 );
 
-window.addEventListener("resize", function (event) {
-  const mobileNotSupported = document.querySelector(".body-container");
-  if (event.currentTarget.innerWidth < 968) {
-    mobileNotSupported.classList.add("show-warning");
+const mobileNotSupportedEl = document.querySelector(".body-container");
+
+const checkMobileSupport = (width) => {
+if (width < 968) {
+    mobileNotSupportedEl.classList.add("show-warning");
   } else {
-    mobileNotSupported.classList.remove("show-warning");
+    mobileNotSupportedEl.classList.remove("show-warning");
   }
+}
+checkMobileSupport(window.screen.width);
+
+window.addEventListener("resize", function (event) {
+  checkMobileSupport(event.currentTarget.innerWidth);
 });
 
 const recipes = [
